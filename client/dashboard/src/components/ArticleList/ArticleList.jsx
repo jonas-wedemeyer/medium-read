@@ -7,6 +7,7 @@ const FlexColDiv = styled.div`
   display: flex;
   width: 800px;
   flex-direction: column;
+  overflow-y: scroll;
 `;
 
 export default function ArticleList({ articles }) {
