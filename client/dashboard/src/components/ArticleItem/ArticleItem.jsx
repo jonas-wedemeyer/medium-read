@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
+import CountDown from '../CountDown/CountDown';
 
 const FlexColDiv = styled.div`
   display: flex;
@@ -33,13 +34,14 @@ export default function ArticleItem({ article }) {
     <div style={{ marginBottom: '15px' }}>
       <a href={article.url} rel="noopener noreferrer" target="_blank" style={{ textDecoration: 'none', 'a:visited': 'black' }}>
         <FlexColDiv>
-          <canvas width="750px" height="50px" ref={canvasRef}>
+          <canvas width="750px" height="50px" ref={canvasRef} style={{ position: 'relative' }}>
             <img src={article.image} alt="hi" />
           </canvas>
           <h4>
             {article.title}
           </h4>
           <InfoBox />
+          <CountDown dateAdded={article.date_added} />
         </FlexColDiv>
       </a>
     </div>
