@@ -1,26 +1,17 @@
-const getCurrDomain = () => {
-  return new Promise((res) => {
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-      res(tabs[0].url);
+// Request article information from contentscript & inject it
+const getArticleInfo = () => {
+  return new Promise((resolve) => {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      chrome.tabs.sendMessage(tabs[0].id, { getArticle: true }, (res) => {
+        resolve(res);
+      });
     });
   });
 };
 
-getCurrDomain()
-    .then((domain) => domain
-        .match(/:\/\/\w+/)
-        .toString()
-        .includes('medium')
-            ? articleInfo() && postArticle()
-            : displayNotOnMedium());
-
-// Request article information from contentscript & inject it
-const articleInfo = () => {
-  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    chrome.tabs.sendMessage(tabs[0].id, { getArticle: true }, (res) => {
-      document.getElementById('title').innerHTML = res.title;
-    });
-  });
+// Inject title into form
+const injectTitle = (title) => {
+  document.getElementById('title').innerHTML = title;
 };
 
 // Post an article to the server
@@ -60,3 +51,17 @@ const displayNotOnMedium = () => {
   document.getElementById('article-form').classList.add('hidden');
   document.getElementById('not-on-medium').classList.remove('hidden');
 };
+
+
+// Logic
+getArticleInfo()
+    .then((article) => {
+      // Determining if the page is Medium through og prop
+      // instead of url due to Medium's custom url feature
+      if (article !== undefined
+        && article.hasOwnProperty('site_name')
+        && article.site_name === 'Medium') {
+        injectTitle(article.title);
+        postArticle();
+      } else displayNotOnMedium();
+    });
