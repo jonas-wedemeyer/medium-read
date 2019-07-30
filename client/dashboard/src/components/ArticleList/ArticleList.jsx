@@ -10,11 +10,10 @@ const FlexColDiv = styled.div`
   overflow-y: scroll;
 `;
 
-export default function ArticleList({ articles }) {
+export default function ArticleList({ articles, deleteOne }) {
   return (
     <FlexColDiv>
-      {/* eslint-disable no-underscore-dangle */}
-      {articles.map(article => <ArticleItem key={article._id} article={article} />)}
+      {articles.map(article => <ArticleItem key={article._id} article={article} deleteOne={deleteOne} />)} {/* eslint-disable-line */}
     </FlexColDiv>
   );
 }

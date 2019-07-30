@@ -15,7 +15,7 @@ const InfoBox = styled.div`
   width: 750px;
 `;
 
-export default function ArticleItem({ article }) {
+export default function ArticleItem({ article, deleteOne }) {
   const canvasRef = useRef(null);
 
   const renderImage = (imageUrl) => {
@@ -41,7 +41,7 @@ export default function ArticleItem({ article }) {
             {article.title}
           </h4>
           <InfoBox />
-          <CountDown dateAdded={article.date_added} />
+          <CountDown dateAdded={article.date_added} id={article._id} deleteOne={deleteOne} />
         </FlexColDiv>
       </a>
     </div>

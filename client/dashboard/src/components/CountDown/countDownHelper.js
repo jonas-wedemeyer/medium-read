@@ -1,30 +1,31 @@
 import moment from 'moment';
 
-const refreshTimer = (date, stateSetter) => {
+const refreshTimer = (date, stateSetter, deletingFunction, articleId) => {
   // Get neccessary moments in time
   const now = moment();
-  const end = moment(date).add(3, 'days');
+  const end = moment(date);
 
   // Calculate remaining time
   const remainingTime = moment(end - now);
 
   // Calculate time units to be displayed
-  const days = remainingTime.add(-1, 'days').format('D');
-  const hours = remainingTime.format('HH');
-  const minutes = remainingTime.format('mm');
+  const days = remainingTime.format('D') > 1 ? remainingTime.subtract(1, 'days').format('D') : '0';
+  const hours = remainingTime.format('HH') > 1 ? remainingTime.subtract(1, 'hours').format('HH') : '0';
+  const minutes = remainingTime.format('mm') > 1 ? remainingTime.subtract(1, 'minutes').format('mm') : '0';
   const seconds = remainingTime.format('ss');
 
-  // TODO:
   // Add another put method to increase the object counter time once it hits zero
-  // If it hits 0  and three hearts are out, invoke delete method
-
-  // Update the state
-  stateSetter({
-    days,
-    hours,
-    minutes,
-    seconds,
-  });
+  // TODO: Refactor to ternary
+  if (now.isAfter(end)) {
+    deletingFunction(articleId);
+  } else  {
+    stateSetter({
+      days,
+      hours,
+      minutes,
+      seconds,
+    });
+  }
 };
 
 export default refreshTimer;

@@ -13,7 +13,7 @@ const PaddedP = styled.div`
   padding-right: 5px
 `;
 
-export default function CountDown({ dateAdded }) {
+export default function CountDown({ dateAdded, deleteOne, id }) {
   // Initial state of the counter
   const [timer, setTimer] = useState({
     days: null,
@@ -24,11 +24,18 @@ export default function CountDown({ dateAdded }) {
 
   // Set the initial timer and refresh it every second & remove it from memory
   // once component is unmounted
+  // useEffect(() => {
+  //   refreshTimer(dateAdded, timer, setTimer, deleteOne, id);
+  //   const interval = setInterval(refreshTimer, 1000, dateAdded, timer, setTimer, deleteOne, id);
+  //   return () => clearInterval(interval);
+  // }, []);
+
   useEffect(() => {
-    refreshTimer(dateAdded, setTimer);
-    const interval = setInterval(refreshTimer, 1000, dateAdded, setTimer);
+    refreshTimer(dateAdded, setTimer, deleteOne, id);
+    const interval = setInterval(refreshTimer, 1000, dateAdded, setTimer, deleteOne, id);
     return () => clearInterval(interval);
   }, []);
+
 
   return (
     <FlexRowDiv>

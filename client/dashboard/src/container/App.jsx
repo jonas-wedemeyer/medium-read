@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { getArticles } from '../services/article-api-service';
+import { getArticles, deleteOne } from '../services/article-api-service';
 import ArticleList from '../components/ArticleList/ArticleList';
 import './App.css';
 
@@ -23,7 +23,7 @@ function App() {
   return (
     <Wrapper>
       <h1>My Saved Articles</h1>
-      <ArticleList articles={articles} />
+      <ArticleList articles={articles} deleteOne={id => deleteOne(articles, setArticles, id)} />
     </Wrapper>
   );
 }

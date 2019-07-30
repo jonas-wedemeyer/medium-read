@@ -11,3 +11,15 @@ exports.getArticles = (state, stateSetter) => {
     .then(articles => stateSetter([...state, ...articles]))
     .catch(err => console.log('An error occured while retrieving the article data: ', err.message)); // eslint-disable-line no-console
 };
+
+exports.deleteOne = (state, stateSetter, id) => {
+  console.log('Deletion was invoked')
+  fetch(`${artcileEndpoint}/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(() => stateSetter(state.filter(article => article._id !== id))) // eslint-disable-line 
+    .catch(err => console.log('An error occured while deleting the article data: ', err.message)); // eslint-disable-line no-console
+};
