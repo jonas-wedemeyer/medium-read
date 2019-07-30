@@ -7,6 +7,7 @@
 </head>
 <body>
   <div class="wrapper">
+    <!-- Form to add articles to the list -->
     <form id="article-form">
       <div class="title">
         <textarea name="title" id="title" rows="3"></textarea>
@@ -20,6 +21,34 @@
         </div>
     </div>
     </form>
+    <!-- Sucess page -->
+    <div class="flexColCenTItem hidden" id="success-page">
+      <p class="spaceDown"><span class="mirror">🎉</span> The article was added to your list. <span>🎉</span></p>
+      <div class="secondary-button">
+          <a href="http://localhost:3000" target="_blank" rel="noopener noreferrer">Open List</a> 
+      </div>
+    </div>
+    <!-- Page for for any other page than a Medium article -->
+    <div class="flexColCenTItem hidden" id="not-on-medium">
+      <p><strong>Jonas</strong>, I have the feeling we are not on <br/>Medium anymore...</p>
+      <div class="flexRowCentItem spaceDown spaceUp">
+          <a href="https://medium.com/" target="_blank"><span class="bigger"><span class="mirror r">👠</span> <span>👠</span></span></a>
+        </div>
+        <p>Click the <span id="highlight"><strong>shoes once</strong></span> to get there!</p>
+        <!-- <div class="secondary-button">
+            <a href="http://localhost:3000" target="_blank" rel="noopener noreferrer">Open List</a> 
+        </div> -->
+      </div>
+    <!-- Page for already added Article -->
+    <div class="flexColCenTItem hidden" id="article-exists">
+      <img src="../assets/icon-48.png" alt="Medium Matters Icon">
+        <p>This Article is already on your list. <br/>So what shall we do?</p>
+        <div class="flexRowCentItem spaceDown">
+          </div>
+          <div class="secondary-button spaceDown">
+              <a href="http://localhost:3000" target="_blank" rel="noopener noreferrer">Open List</a> 
+          </div>
+        </div>
   </div>
   <script src="./popup.js"></script>
 </body>

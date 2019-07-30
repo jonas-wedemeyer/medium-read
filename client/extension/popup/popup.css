@@ -5,11 +5,13 @@
 }
 
 body{
-  font-family: 'Nunito', 'Arial', sans-serif; 
+  font-family: 'Nunito', 'Arial', sans-serif;
+  font-size: 16px; 
 }
 
 .wrapper {
-  width: 300px;
+  width: 320px;
+  height: 150px;
   padding: 8px; 
 }
 
@@ -66,4 +68,47 @@ button {
 a {
   text-decoration: none;
   color: #aebfbe;
+}
+
+p {
+  text-align: center;
+}
+
+.flexColCenTItem {
+  width: 300px;
+  height: 100%;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.flexRowCentItem {
+  display: flex;
+  align-items: center;
+}
+
+.spaceDown {
+  margin-bottom: 10px;
+}
+
+.spaceUp {
+  margin-top: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+.mirror {
+  display: inline-block;
+  transform: scale(-1, 1);
+}
+
+#highlight {
+  color: #E52823
+}
+
+.bigger {
+  font-size: 22px;
 }
