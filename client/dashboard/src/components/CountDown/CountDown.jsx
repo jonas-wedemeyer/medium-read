@@ -10,7 +10,8 @@ const FlexRowDiv = styled.div`
 `;
 
 const PaddedP = styled.div`
-  padding-right: 5px
+  padding-right: 5px;
+  color: #757575;
 `;
 
 export default function CountDown({ dateAdded, deleteOne, id }) {
@@ -24,12 +25,6 @@ export default function CountDown({ dateAdded, deleteOne, id }) {
 
   // Set the initial timer and refresh it every second & remove it from memory
   // once component is unmounted
-  // useEffect(() => {
-  //   refreshTimer(dateAdded, timer, setTimer, deleteOne, id);
-  //   const interval = setInterval(refreshTimer, 1000, dateAdded, timer, setTimer, deleteOne, id);
-  //   return () => clearInterval(interval);
-  // }, []);
-
   useEffect(() => {
     refreshTimer(dateAdded, setTimer, deleteOne, id);
     const interval = setInterval(refreshTimer, 1000, dateAdded, setTimer, deleteOne, id);
