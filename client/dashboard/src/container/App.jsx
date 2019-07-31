@@ -23,7 +23,7 @@ function App() {
   return (
     <Wrapper>
       <h1>My Saved Articles</h1>
-      <ArticleList articles={articles} deleteOne={id => deleteOne(articles, setArticles, id)} />
+      <ArticleList articles={articles.sort((a, b) => new Date(a.date_added) - new Date(b.date_added))} deleteOne={id => deleteOne(articles, setArticles, id)} />
     </Wrapper>
   );
 }
