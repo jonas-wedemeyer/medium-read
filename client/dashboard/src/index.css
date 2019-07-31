@@ -8,6 +8,9 @@
 body {
   font-family: Nunito, Arial, sans-serif;
   font-size: 16px;
+  background-image: url('../public/assets/background.png');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 a, a:visited {
