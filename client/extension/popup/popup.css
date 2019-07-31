@@ -105,10 +105,6 @@ p {
   transform: scale(-1, 1);
 }
 
-#highlight {
-  color: #E52823
-}
-
 .bigger {
   font-size: 22px;
 }
