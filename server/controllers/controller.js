@@ -32,7 +32,8 @@ exports.findArticle = async (ctx) => {
 exports.postArticle = async (ctx) => {
   try {
     const date = new Date(Date.now());
-    date.setHours(date.getHours() + 24);
+    // for demoing pruposes --> added article will be deleted in 10 seconds
+    date.setSeconds(date.getSeconds() + 10);
     const article = {
       ...ctx.request.body,
       date_added: date,
