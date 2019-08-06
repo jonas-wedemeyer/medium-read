@@ -5,6 +5,7 @@ import ArticleItem from '../ArticleItem/ArticleItem';
 
 const FlexColDiv = styled.div`
   display: flex;
+  align-items: center;
   width: 800px;
   flex-direction: column;
   overflow-y: scroll;

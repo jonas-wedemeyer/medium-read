@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import CountDown from '../CountDown/CountDown';
+import hearts from '../../../public/assets/3-layers.png';
+import clock from '../../../public/assets/clock.png'
 
 
 const Card = styled.div`
@@ -44,7 +46,7 @@ export default function ArticleItem({ article, deleteOne }) {
 
   return (
     <Card>
-      <a href={article.url} rel="noopener noreferrer" target="_blank" style={{ }}>
+      <a href={article.url} rel="noopener noreferrer" target="_blank">
         <FlexColDiv>
           <Poster>
               <Title>
@@ -52,6 +54,7 @@ export default function ArticleItem({ article, deleteOne }) {
               </Title>
           </Poster>
           <InfoBox>
+            <img src={hearts} alt="hearts" style={{paddingLeft: '5px'}}/>
             <CountDown dateAdded={article.date_added} id={article._id} deleteOne={deleteOne} />
           </InfoBox>
         </FlexColDiv>
