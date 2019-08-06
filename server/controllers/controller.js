@@ -14,7 +14,7 @@ exports.getArticles = async (ctx) => {
 
 exports.findArticle = async (ctx) => {
   try {
-    const { title } = ctx.params; //TODO: Refactor for url with encoded string
+    const { title } = ctx.params; // TODO: Refactor for url with encoded string
     const article = await Article.findOne({ title });
     if (!article) {
       ctx.status = 404;
@@ -32,8 +32,7 @@ exports.findArticle = async (ctx) => {
 exports.postArticle = async (ctx) => {
   try {
     const date = new Date(Date.now());
-    // for demoing pruposes --> added article will be deleted in 10 seconds
-    date.setSeconds(date.getSeconds() + 10);
+    date.setHours(date.getHours() + 71);
     const article = {
       ...ctx.request.body,
       date_added: date,

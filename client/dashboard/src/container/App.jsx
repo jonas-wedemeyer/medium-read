@@ -24,7 +24,10 @@ function App() {
 
   return (
     <Wrapper>
-      <ArticleList articles={articles.sort((a, b) => new Date(a.date_added) - new Date(b.date_added))} deleteOne={id => deleteOne(articles, setArticles, id)} />
+      <ArticleList
+        articles={articles.sort((a, b) => new Date(a.date_added) - new Date(b.date_added))}
+        deleteOne={id => deleteOne(articles, setArticles, id)}
+      />
     </Wrapper>
   );
 }
