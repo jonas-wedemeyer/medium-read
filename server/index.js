@@ -1,16 +1,9 @@
-const Koa = require('koa');
-const cors = require('@koa/cors');
-const bodyparser = require('koa-bodyparser');
-const router = require('./router');
+const app = require('./app');
+const dotenv = require('dotenv');
 
-const port = 4000;
+dotenv.config({path: './.env'});
 
-const app = new Koa();
-
-app
-  .use(cors())
-  .use(bodyparser())
-  .use(router.routes());
+const port = process.env.PORT;
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
