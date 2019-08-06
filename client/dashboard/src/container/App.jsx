@@ -18,11 +18,12 @@ function App() {
 
   useEffect(() => {
     getArticles(articles, setArticles);
+    const interval = setInterval(getArticles, 15000, articles, setArticles);
+    return () => clearInterval(interval);
   }, []);
 
   return (
     <Wrapper>
-      <h1>My Saved Articles</h1>
       <ArticleList articles={articles.sort((a, b) => new Date(a.date_added) - new Date(b.date_added))} deleteOne={id => deleteOne(articles, setArticles, id)} />
     </Wrapper>
   );

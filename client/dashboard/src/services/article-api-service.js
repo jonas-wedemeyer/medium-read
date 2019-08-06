@@ -1,5 +1,6 @@
 const artcileEndpoint = 'http://localhost:4000/articles';
 
+
 exports.getArticles = (state, stateSetter) => {
   fetch(artcileEndpoint, {
     method: 'GET',
@@ -13,7 +14,6 @@ exports.getArticles = (state, stateSetter) => {
 };
 
 exports.deleteOne = (state, stateSetter, id) => {
-  console.log('Deletion was invoked')
   fetch(`${artcileEndpoint}/${id}`, {
     method: 'DELETE',
     headers: {
