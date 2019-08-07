@@ -51,9 +51,13 @@ exports.postArticle = async (ctx) => {
 exports.deleteArticle = async (ctx) => {
   try {
     const { id } = ctx.params;
-    await Article.findByIdAndDelete(id);
-    ctx.body = {};
-    ctx.status = 200;
+    const art = await Article.findByIdAndDelete(id);
+    if (!art) {
+      ctx.status = 404;
+    } else { 
+      ctx.body = {};
+      ctx.status = 200;
+    }
   } catch (err) {
     console.log('An error occured in  :', err.message); // eslint-disable-line no-console
     ctx.status = 500;

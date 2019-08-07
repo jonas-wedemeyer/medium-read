@@ -1,3 +1,4 @@
+const dotenv = require('dotenv').config({path: './.env'});
 const request = require('supertest');
 
 const mocks = require('./mocks');
@@ -7,10 +8,13 @@ const Article = require('../models/article');
 
 const articles = mocks.articles;
 
+const dbUrl = process.env.NODE_ENV === 'test'
+  ? process.env.DB_URL_TEST
+  : 'mongodb://localhost:27017/testArticles'
+
 describe('Articles Rest Api', () => {
-  
   beforeAll(async () => {
-    await db.connect('mongodb://localhost:27017/testArticles', { useNewUrlParser: true, new: true }, (err) => {
+    await db.connect(dbUrl, { useNewUrlParser: true, new: true }, (err) => {
       if (err) console.log('Error connecting to the database: ', err); // eslint-disable-line no-console
       else console.log('Connected to the database.'); // eslint-disable-line no-console
     });
@@ -48,7 +52,7 @@ describe('Articles Rest Api', () => {
     });
 
     test('should return an error in case an invalid title is passed', done => {
-      request(app.callback()).get('/articles/FAKETITLE')
+      request(app.callback()).get('/articles/fake-title')
         .expect(404)
         .then(() => done());
     });
@@ -63,14 +67,7 @@ describe('Articles Rest Api', () => {
         .expect('Content-Type', /json/)
         .expect(201)
         .then(res => {
-          const { title, description, url, image, date_added, completed, deleted } = res.body;
-          expect(title).toEqual(art.title)
-          expect(description).toEqual(art.description)
-          expect(url).toEqual(art.url)
-          expect(image).toEqual(art.image)
-          expect(date_added instanceof Date)
-          expect(completed).toEqual(false)
-          expect(deleted).toEqual(false)
+          expect(res.body).toMatchObject(art);
           done();
         })
     });
@@ -79,14 +76,23 @@ describe('Articles Rest Api', () => {
   describe('DELETE /articles/:id', () => {
     test('should delete an article if valid id is passed', async (done) => {
       const getResponse = await request(app.callback()).get('/articles');
-      console.log('response body: ', getResponse.body);
       request(app.callback()).delete(`/articles/${getResponse.body[0]._id}`)
         .expect('Content-Type', /json/)
         .expect(200)
         .then(res => {
-          expect(res.body).toEqual({});
+          expect(res.body).toEqual({})
           done();
         });
+    });
+
+    test('should send 404 when id is not found', (done) => {
+      request(app.callback()).delete('/articles/54759eb3c090d83494e2d804')
+        .expect('Content-Type', /text/)
+        .expect(404)
+        .then(res => {
+          expect(res.text).toEqual('Not Found')
+          done();
+        })
     });
   });
 })
