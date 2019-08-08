@@ -6,13 +6,18 @@ const db = require('./db');
 dotenv.config({path: './.env'});
 
 const port = process.env.PORT;
+const dbURL = process.env.DB_URL;
 
-db.connect('mongodb://localhost:27017/articles', { useNewUrlParser: true, new: true }, (err) => {
-  if (err) console.log('An error occured while connecting to the database: ', err); // eslint-disable-line no-console
-  else console.log('Connection to the database has been established.'); // eslint-disable-line no-console
-});
+(async function () {
+  try {
+    await db.connect(dbURL, { useNewUrlParser: true });
+    console.log('Database connected.')
+    app.listen(port, () => {
+      // eslint-disable-next-line no-console
+      console.log(`Server listening on port ${port}...`);
+    });
+  } catch (err) {
+    console.log(err);
+  }
+})();
 
-app.listen(port, () => {
-  // eslint-disable-next-line no-console
-  console.log(`Server is up and running on this ${port}.`);
-});
