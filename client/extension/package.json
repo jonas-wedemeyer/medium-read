@@ -12,7 +12,8 @@
   "license": "ISC",
   "devDependencies": {
     "@types/chrome": "0.0.86",
-    "eslint": "^6.1.0",
-    "eslint-config-google": "^0.13.0"
+    "eslint": "^6.2.2",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2"
   }
 }
