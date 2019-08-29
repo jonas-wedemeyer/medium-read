@@ -9,7 +9,7 @@ exports.getArticles = (state, stateSetter) => {
     },
   })
     .then(res => res.json())
-    .then(articles => stateSetter([...state, ...articles]))
+    .then(({ data }) => stateSetter([...state, ...data.articles]))
     .catch(err => console.log('An error occured while retrieving the article data: ', err.message)); // eslint-disable-line no-console
 };
 

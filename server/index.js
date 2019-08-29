@@ -1,18 +1,23 @@
-const Koa = require('koa');
-const cors = require('@koa/cors');
-const bodyparser = require('koa-bodyparser');
-const router = require('./router');
+const dotenv = require('dotenv');
 
-const port = 4000;
+const app = require('./app');
+const db = require('./db');
 
-const app = new Koa();
+dotenv.config({path: './.env'});
 
-app
-  .use(cors())
-  .use(bodyparser())
-  .use(router.routes());
+const port = process.env.PORT;
+const dbURL = process.env.DB_URL;
 
-app.listen(port, () => {
-  // eslint-disable-next-line no-console
-  console.log(`Server is up and running on this ${port}.`);
-});
+(async function () {
+  try {
+    await db.connect(dbURL, { useNewUrlParser: true });
+    console.log('Database connected.')
+    app.listen(port, () => {
+      // eslint-disable-next-line no-console
+      console.log(`Server listening on port ${port}...`);
+    });
+  } catch (err) {
+    console.log(err);
+  }
+})();
+

@@ -1,6 +1,6 @@
-const db = require('../db');
+const mongoose = require('mongoose');
 
-const { Schema } = db;
+const { Schema } = mongoose;
 const articleSchema = new Schema({
   title: String,
   description: String,
@@ -11,7 +11,7 @@ const articleSchema = new Schema({
   deleted: Boolean,
 }, { versionKey: false });
 
-const Article = db.model('Article', articleSchema);
+const Article = mongoose.model('Article', articleSchema);
 
 
 module.exports = Article;

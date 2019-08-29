@@ -1,5 +1,5 @@
 const router = require('koa-router')();
-const controller = require('./controllers/controller');
+const controller = require('./controllers/controllers');
 
 router.get('/articles', controller.getArticles);
 router.get('/articles/:title', controller.findArticle);

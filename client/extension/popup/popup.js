@@ -4,8 +4,8 @@ const articlesEndpoint = 'http://localhost:4000/articles';
 // Request article information from contentscript & inject it
 const getArticleInfo = () => {
   return new Promise((resolve) => {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      chrome.tabs.sendMessage(tabs[0].id, { getArticle: true }, (res) => {
+    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+      chrome.tabs.sendMessage(tabs[0].id, {getArticle: true}, (res) => {
         resolve(res);
       });
     });
@@ -22,8 +22,8 @@ const injectTitle = (title) => {
 const postArticle = () => {
   document.getElementById('article-form').addEventListener('submit', (e) => {
     e.preventDefault();
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      chrome.tabs.sendMessage(tabs[0].id, { getArticle: true }, ({ title, description, image, url }) => { // eslint-disable-line max-len
+    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+      chrome.tabs.sendMessage(tabs[0].id, {getArticle: true}, ({title, description, image, url}) => { // eslint-disable-line max-len
         fetch(articlesEndpoint, {
           method: 'POST',
           headers: {
@@ -53,7 +53,7 @@ const findArticle = async (title) => {
     console.log(err);
     return false;
   }
-}
+};
 
 // Function for for showing the success page
 const displaySucessPage = () => {
@@ -71,14 +71,14 @@ const displayNotOnMedium = () => {
 const articleExists = () => {
   document.getElementById('article-form').classList.add('hidden');
   document.getElementById('article-exists').classList.remove('hidden');
-}
+};
 
 // Wrapper Function
-const existsWrapper = async (title) => {
-  const result = await findArticle(title);
-  console.log("This is the result from the wrapper:", result);
-  return result;
-}
+// const existsWrapper = async (title) => {
+//   const result = await findArticle(title);
+//   console.log('This is the result from the wrapper:', result);
+//   return result;
+// };
 
 
 // Logic
@@ -97,6 +97,6 @@ const existsWrapper = async (title) => {
     } else displayNotOnMedium();
   } catch (err) {
     console.log(err);
-    alert('Something went wrong, retry!')
+    alert('Something went wrong, retry!');
   }
 })();
