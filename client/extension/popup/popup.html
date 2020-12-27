@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="./popup.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="wrapper">
+    <!-- Form to add articles to the list -->
+    <form id="article-form">
+      <div class="title">
+        <textarea name="title" id="title" rows="3"></textarea>
+      </div>
+      <div class="interact-area">
+        <div>
+          <button type="submit">Add Article</button>
+        </div>
+        <div class="secondary-button">
+            <a href="http://localhost:3000" target="_blank" rel="noopener noreferrer">Open List</a> 
+        </div>
+    </div>
+    </form>
+    <!-- Sucess page -->
+    <div class="flexColCenTItem hidden" id="success-page">
+      <p class="spaceDown"><span class="mirror">🎉</span> The article was added to your list. <span>🎉</span></p>
+      <div class="secondary-button">
+          <a href="http://localhost:3000" target="_blank" rel="noopener noreferrer">Open List</a> 
+      </div>
+    </div>
+    <!-- Page for for any other page than a Medium article -->
+    <div class="flexColCenTItem hidden" id="not-on-medium">
+      <p><strong style="color: #7da453" >Jonas</strong>, I have the feeling we are not on <br/>Medium anymore...</p>
+      <div class="flexRowCentItem spaceDown spaceUp">
+          <a href="https://medium.com/" target="_blank"><span class="bigger"><span class="mirror r">👠</span> <span>👠</span></span></a>
+        </div>
+        <p>Click the <span style="color: #E52823"><strong>shoes once</strong></span> to get there!</p>
+        <!-- <div class="secondary-button"> 
+            <a href="http://localhost:3000" target="_blank" rel="noopener noreferrer">Open List</a> 
+        </div> -->
+      </div>
+    <!-- Page for already added Article -->
+    <div class="flexColCenTItem hidden" id="article-exists">
+      <img src="../assets/icon-48.png" alt="Medium Matters Icon">
+        <p>This Article is already on your list. <br/>So what shall we do?</p>
+        <div class="flexRowCentItem spaceDown">
+          </div>
+          <div class="secondary-button spaceDown">
+              <a href="http://localhost:3000" target="_blank" rel="noopener noreferrer">Open List</a> 
+          </div>
+        </div>
+  </div>
+  <script src="./popup.js"></script>
+</body>
+</html>
