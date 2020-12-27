@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "nodemon": "nodemon index.js",
     "lint": "eslint",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,14 +14,14 @@
   "devDependencies": {
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.2.0",
-    "eslint-plugin-import": "^2.18.2",
-    "nodemon": "^1.19.1"
+    "eslint-plugin-import": "^2.22.1",
+    "nodemon": "^1.19.4"
   },
   "dependencies": {
-    "@koa/cors": "^3.0.0",
-    "koa": "^2.7.0",
-    "koa-bodyparser": "^4.2.1",
+    "@koa/cors": "^3.1.0",
+    "koa": "^2.13.0",
+    "koa-bodyparser": "^4.3.0",
     "koa-router": "^7.4.0",
-    "mongoose": "^5.6.7"
+    "mongoose": "^5.11.8"
   }
 }
